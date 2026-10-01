@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<script>
+  // האפליקציה גרה ב-Netlify (אתר נפרד, כדי שכרום יאפשר להתקין אותה ליד האחרות).
+  if (location.hostname.endsWith('github.io')) location.replace('https://bounce-yoman.netlify.app/');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#fbf7f1">
+<title>יומן הקשבה</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- מסך היום -->
+<main id="day-view" class="wrap">
+  <header class="top">
+    <h1>יומן הקשבה</h1>
+    <p>רגע של הקשבה לגוף, בלי שיפוט</p>
+  </header>
+
+  <nav class="day-nav">
+    <button type="button" class="nav-btn" id="prev-day" aria-label="יום קודם">›</button>
+    <div class="day-title">
+      <div id="day-label"></div>
+      <button type="button" class="link-btn" id="today-btn" hidden>חזרה להיום</button>
+    </div>
+    <button type="button" class="nav-btn" id="next-day" aria-label="יום הבא">‹</button>
+  </nav>
+
+  <button type="button" class="big-btn" id="new-camera">📷 רשומה חדשה</button>
+  <div class="new-alt">
+    <button type="button" class="link-btn" id="new-gallery">בחירה מהגלריה</button>
+    <span>·</span>
+    <button type="button" class="link-btn" id="new-nophoto">בלי תמונה</button>
+  </div>
+
+  <div id="timeline"></div>
+</main>
+
+<!-- טופס רשומה (חדשה / עריכה) -->
+<section id="form-view" class="wrap" hidden>
+  <div class="form-top">
+    <button type="button" class="link-btn" id="form-cancel">ביטול</button>
+    <h2 id="form-title">רשומה חדשה</h2>
+    <span class="spacer"></span>
+  </div>
+
+  <div class="photo-box" id="photo-box">
+    <img id="photo-preview" alt="">
+    <div class="photo-empty" id="photo-empty">אין תמונה</div>
+  </div>
+  <div class="photo-actions">
+    <button type="button" class="chip" id="photo-camera">📷 צילום</button>
+    <button type="button" class="chip" id="photo-gallery">🖼️ מהגלריה</button>
+    <button type="button" class="chip" id="photo-remove" hidden>הסרת התמונה</button>
+  </div>
+
+  <div class="card">
+    <div class="field-label">רעב לפני</div>
+    <div class="scale" id="hunger-scale"></div>
+  </div>
+
+  <div class="card">
+    <div class="field-label">שובע אחרי <span class="optional">(אפשר גם אחר כך)</span></div>
+    <div class="scale" id="fullness-scale"></div>
+  </div>
+
+  <div class="card">
+    <div class="bar-preview" id="bar-preview"></div>
+  </div>
+
+  <div class="card">
+    <label class="field-label" for="eaten-at">מתי</label>
+    <input type="datetime-local" id="eaten-at">
+    <label class="field-label" for="note" style="margin-top:14px">הערה <span class="optional">(לא חובה)</span></label>
+    <textarea id="note" placeholder="מה שמתי לב אליו..."></textarea>
+  </div>
+
+  <button type="button" class="big-btn" id="form-save">שמירה</button>
+  <button type="button" class="del-btn" id="form-delete" hidden>מחיקת הרשומה</button>
+</section>
+
+<!-- תמונה בגדול -->
+<div class="lightbox" id="lightbox" hidden><img id="lightbox-img" alt=""></div>
+
+<input type="file" id="file-camera" accept="image/*" capture="environment" hidden>
+<input type="file" id="file-gallery" accept="image/*" hidden>
+
+<div class="toast" id="toast"></div>
+
+<script src="db.js"></script>
+<script src="image.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
