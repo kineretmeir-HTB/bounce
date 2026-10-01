@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>רשימת ניצחונות עברה</title>
-<meta http-equiv="refresh" content="1;url=../nitzahonot/">
+<meta http-equiv="refresh" content="1;url=https://bounce-nitzahonot.netlify.app/">
 </head>
 <body style="font-family:sans-serif;background:#fdf8f3;color:#3a3330;text-align:center;padding:40px 16px;">
 <p>רשימת הניצחונות עברה לכתובת חדשה...</p>
-<p><a href="../nitzahonot/">לחצי כאן אם זה לא קורה לבד</a></p>
+<p><a href="https://bounce-nitzahonot.netlify.app/">לחצי כאן אם זה לא קורה לבד</a></p>
 <script>
   // מנקה את העותק הישן של הכתובת הזו ומעביר לחדשה
   (async () => {
@@ -18,7 +18,7 @@
       const keys = await caches.keys();
       await Promise.all(keys.filter(k => /^nitzahon-v\d+$/.test(k)).map(k => caches.delete(k)));
     } catch (e) {}
-    location.replace('../nitzahonot/');
+    location.replace('https://bounce-nitzahonot.netlify.app/');
   })();
 </script>
 </body>
