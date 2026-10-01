@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#fdf8f3">
+<title>רשימת ניצחונות</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🌿 רשימת ניצחונות</h1>
+<div class="subtitle">כל צעד קטן שנעשה מתוך מודעות ובחירה</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="card">
+  <textarea id="entryText" placeholder="מה קרה? איזה ניצחון קטן או גדול היה לך היום?"></textarea>
+  <div class="chips" id="catChips"></div>
+  <button class="add-btn" id="addBtn" type="button">➕ הוספת ניצחון</button>
+</div>
+
+<div class="section-title">הניצחונות שלי</div>
+<div class="filter-row" id="filterRow"></div>
+
+<div class="date-filter-bar">
+  <div class="date-filter-btn" id="dateFilterToggle">📅 <span id="dateFilterLabel">סינון לפי תאריך</span></div>
+  <span id="dateClearWrap"></span>
+</div>
+
+<div id="calendarPanel" style="display:none;"></div>
+
+<div id="list" class="empty-state">טוען...</div>
+
+<div class="backup">
+  <p>הנתונים נשמרים רק בטלפון הזה. כדאי לגבות מדי פעם לקובץ.</p>
+  <div class="row">
+    <button id="export-btn" type="button">ייצוא גיבוי</button>
+    <button id="import-btn" type="button">ייבוא מגיבוי</button>
+  </div>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
