@@ -205,3 +205,18 @@ textarea:focus, input:focus { outline: 2px solid var(--bronze-soft); border-colo
   width: 34px; height: 34px; border-radius: 9px; object-fit: cover;
   border: 2px solid var(--card); box-shadow: var(--shadow);
 }
+
+/* בחירת שעה בקפיצות של רבע שעה */
+.when-row { display: flex; gap: 8px; align-items: center; }
+.when-row input[type=date] {
+  flex: 1; min-width: 0; min-height: 48px; font-family: inherit; font-size: 16px; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 12px; background: #fffdfb; padding: 10px;
+}
+.time-pick { display: flex; align-items: center; gap: 4px; }
+.time-pick select {
+  min-height: 48px; min-width: 64px; font-family: inherit; font-size: 17px; font-weight: 600;
+  color: var(--ink); text-align: center; text-align-last: center;
+  border: 1px solid var(--border); border-radius: 12px; background: #fffdfb; padding: 0 8px;
+  -webkit-appearance: none; appearance: none;
+}
+.time-pick b { font-size: 18px; color: var(--muted); }

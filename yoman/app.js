@@ -93,6 +93,31 @@ function toLocalInput(d) {
   const p = (n) => String(n).padStart(2, '0');
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
 }
+// השעה נבחרת בקפיצות של 15 דקות - מעגלים לרבע השעה הקרוב
+function roundTo15(d) {
+  const x = new Date(d);
+  x.setSeconds(0, 0);
+  x.setMinutes(Math.round(x.getMinutes() / 15) * 15);
+  return x;
+}
+function whenHtml(value) {
+  const [date, time] = value.split('T');
+  const [hh, mm] = time.split(':').map(Number);
+  const p = (n) => String(n).padStart(2, '0');
+  let hours = '', mins = '';
+  for (let h = 0; h < 24; h++) hours += `<option value="${h}"${h === hh ? ' selected' : ''}>${p(h)}</option>`;
+  for (const m of [0, 15, 30, 45]) mins += `<option value="${m}"${m === mm ? ' selected' : ''}>${p(m)}</option>`;
+  return `<div class="when-row">
+    <input type="date" id="eaten-date" value="${date}">
+    <span class="time-pick" dir="ltr"><select id="eaten-hour" aria-label="שעה">${hours}</select><b>:</b><select id="eaten-min" aria-label="דקות">${mins}</select></span>
+  </div>`;
+}
+function readWhen() {
+  const date = $('eaten-date').value;
+  if (!date) return form.eatenAt;
+  const p = (n) => String(n).padStart(2, '0');
+  return `${date}T${p($('eaten-hour').value)}:${p($('eaten-min').value)}`;
+}
 function formatTime(iso) {
   return new Date(iso).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
 }
@@ -272,7 +297,7 @@ async function openForm(entry, newPhoto) {
     craving: e.craving ?? null,
     tools: [...(e.tools || [])],
     decision: e.decision || null,
-    eatenAt: toLocalInput(entry ? new Date(e.eatenAt) : defaultTime),
+    eatenAt: toLocalInput(roundTo15(entry ? new Date(e.eatenAt) : defaultTime)),
     note: e.note || '',
     fullness: e.fullness ?? null,
     satisfaction: e.satisfaction ?? null,
@@ -363,8 +388,8 @@ function renderForm() {
   }
 
   html += `<div class="card">
-    <label class="field-label" for="eaten-at">מתי</label>
-    <input type="datetime-local" id="eaten-at" value="${escapeHtml(f.eatenAt)}">
+    <label class="field-label" for="eaten-date">מתי</label>
+    ${whenHtml(f.eatenAt)}
     <label class="field-label" for="note" style="margin-top:14px">הערה <span class="optional">(לא חובה)</span></label>
     <textarea id="note" placeholder="מה שמתי לב אליו לפני...">${escapeHtml(f.note)}</textarea>
   </div>`;
@@ -465,7 +490,7 @@ function bindForm() {
   });
 
   body.querySelectorAll('[data-detail]').forEach(inp => inp.oninput = () => { form.details[inp.dataset.detail] = inp.value; });
-  if ($('eaten-at')) $('eaten-at').oninput = () => { form.eatenAt = $('eaten-at').value; };
+  ['eaten-date', 'eaten-hour', 'eaten-min'].forEach(id => { if ($(id)) $(id).onchange = () => { form.eatenAt = readWhen(); }; });
   if ($('note')) $('note').oninput = () => { form.note = $('note').value; };
   if ($('reflection')) $('reflection').oninput = () => { form.reflection = $('reflection').value; };
 
@@ -492,7 +517,7 @@ function bindForm() {
 }
 
 function captureInputs() {
-  if ($('eaten-at')) form.eatenAt = $('eaten-at').value;
+  if ($('eaten-date')) form.eatenAt = readWhen();
   if ($('note')) form.note = $('note').value;
   if ($('reflection')) form.reflection = $('reflection').value;
   $('form-body').querySelectorAll('[data-detail]').forEach(inp => { form.details[inp.dataset.detail] = inp.value; });
