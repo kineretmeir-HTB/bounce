@@ -166,3 +166,42 @@ textarea:focus, input:focus { outline: 2px solid var(--bronze-soft); border-colo
   max-width: 90%; text-align: center; z-index: 30;
 }
 .toast.show { opacity: 1; }
+
+/* ---------- לפני / אחרי, טיוטה, "לא רעבה" ---------- */
+.section-title {
+  font-size: 13px; font-weight: 700; color: var(--bronze);
+  letter-spacing: .02em; margin: 18px 4px 8px;
+}
+.section-title:first-child { margin-top: 4px; }
+.photo-box.empty-box { aspect-ratio: 16 / 7; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip.wide { display: block; width: 100%; margin-top: 10px; }
+.hint { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 10px 0 4px; }
+.sub-label { font-size: 13.5px; font-weight: 600; margin: 14px 0 8px; }
+.scale-desc {
+  margin-top: 10px; padding: 9px 12px; border-radius: 12px;
+  background: var(--bronze-soft); color: #6b4423; font-size: 14px; line-height: 1.5;
+}
+.text-in {
+  width: 100%; font-family: inherit; font-size: 16px; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 12px; background: #fffdfb;
+  padding: 12px; min-height: 46px; direction: rtl;
+}
+.bar-preview { margin-top: 14px; }
+.ghost-btn {
+  display: block; width: 100%; min-height: 52px; margin: 6px 0 14px;
+  border: 1.5px dashed var(--bronze); background: transparent; color: var(--bronze);
+  border-radius: 16px; font-size: 15.5px; font-weight: 600; cursor: pointer;
+}
+.link-btn.center { display: block; margin: 8px auto 0; }
+.tag {
+  font-size: 11.5px; color: var(--green); background: var(--green-soft);
+  border-radius: 999px; padding: 1px 8px;
+}
+.entry-head { flex-wrap: wrap; }
+.thumb-wrap { position: relative; flex-shrink: 0; }
+.thumb-after {
+  position: absolute; bottom: -4px; left: -4px;
+  width: 34px; height: 34px; border-radius: 9px; object-fit: cover;
+  border: 2px solid var(--card); box-shadow: var(--shadow);
+}
