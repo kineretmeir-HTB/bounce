@@ -1,6 +1,6 @@
 // שומר עותק של קבצי האפליקציה בטלפון, כדי שתיפתח גם בלי אינטרנט.
 // כשיש אינטרנט - מוריד ברקע גרסה מעודכנת, שתופיע בפתיחה הבאה.
-const CACHE = 'apart-v3';
+const CACHE = 'nitzahonot-v1';
 const FILES = [
   './',
   'index.html',
@@ -24,7 +24,7 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k.startsWith('apart-') && k !== CACHE).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k.startsWith('nitzahonot-') && k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
