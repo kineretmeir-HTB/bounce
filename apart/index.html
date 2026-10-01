@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#7E9A80">
+<title>תרגול אפר"ת</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <h1>תרגול אפר"ת</h1>
+    <p>אירוע · פרשנות · רגש · תגובה</p>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="practice">תרגול חדש</div>
+    <div class="tab" data-tab="history">היסטוריה</div>
+  </div>
+
+  <div id="practice" class="screen active">
+    <div class="progress" id="progress"></div>
+    <div id="step-container"></div>
+  </div>
+
+  <div id="history" class="screen">
+    <div id="hist-list"></div>
+    <div class="backup">
+      <p>הנתונים נשמרים רק בטלפון הזה. כדאי לגבות מדי פעם לקובץ.</p>
+      <div class="row">
+        <button class="btn-ghost" id="export-btn" type="button">ייצוא גיבוי</button>
+        <button class="btn-ghost" id="import-btn" type="button">ייבוא מגיבוי</button>
+      </div>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
+    </div>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
